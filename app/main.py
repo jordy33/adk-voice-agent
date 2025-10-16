@@ -28,7 +28,6 @@ load_dotenv()
 APP_NAME = "ADK Streaming example"
 session_service = InMemorySessionService()
 
-
 def start_agent_session(session_id, is_audio=False):
     """Starts an agent session"""
 
@@ -49,16 +48,22 @@ def start_agent_session(session_id, is_audio=False):
     # Set response modality
     modality = "AUDIO" if is_audio else "TEXT"
 
-    # Create speech config with voice settings
+    # Create speech config with voice settings for Spanish (United States)
     speech_config = types.SpeechConfig(
         voice_config=types.VoiceConfig(
-            # Puck, Charon, Kore, Fenrir, Aoede, Leda, Orus, and Zephyr
-            prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Puck")
-        )
+            prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                voice_name="Charon"
+            )
+        ),
+        # Add the language_code here to specify the dialect
+        language_code="es-US"
     )
 
     # Create run config with basic settings
-    config = {"response_modalities": [modality], "speech_config": speech_config}
+    config = {
+        "response_modalities": [modality],
+        "speech_config": speech_config
+    }
 
     # Add output_audio_transcription when audio is enabled to get both audio and text
     if is_audio:
@@ -76,7 +81,6 @@ def start_agent_session(session_id, is_audio=False):
         run_config=run_config,
     )
     return live_events, live_request_queue
-
 
 async def agent_to_client_messaging(
     websocket: WebSocket, live_events: AsyncIterable[Event | None]

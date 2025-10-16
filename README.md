@@ -156,3 +156,10 @@ If you encounter issues installing the required packages:
 - The OAuth token is stored securely in your user directory
 - Never share your `credentials.json` file or the generated token
 - The application only requests the minimum permissions needed for calendar operations
+
+
+# Helpful Resources:
+Conversational Agents Official Documentation : https://cloud.google.com/dialogflow/c...
+Chirp HD voice samples: https://cloud.google.com/text-to-spee...
+Google Agent Development Kit(ADK) official documentation : https://google.github.io/adk-docs/
+Swagger Editor : https://editor.swagger.io/
